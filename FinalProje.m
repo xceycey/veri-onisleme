@@ -1,7 +1,7 @@
 %clc;
 %clear all;
 
-veri=xlsread('D:\Veri Öniþleme\MATLABProjects\verisetim.csv','B2:N616');
+veri=xlsread('C:\Users\ceyda\Desktop\GitHub\Matlab\veri-onisleme\verisetim.csv','B2:N616');
 yeniveri=veri;
 
 while(1==1)
@@ -13,13 +13,13 @@ while(1==1)
     disp('[4] Mod Hesapla');
     disp('[5] Frekans Hesapla'); 
     disp('[6] IQR Hesapla'); 
-    disp('[7] Aykýrý Deðerleri Bul'); 
-    disp('[8] 5 Sayý Özeti'); 
-    disp('[9] Kutu Grafiði'); 
+    disp('[7] Aykiri Degerleri Bul'); 
+    disp('[8] 5 Sayý Ozeti'); 
+    disp('[9] Kutu Grafigi'); 
     disp('[10] Varyans ve Standart Sapma Hesapla'); 
-    disp('[11] Çýkýþ');
+    disp('[11] Cikis');
 
-    secim=input('Seçim yapýn: ');
+    secim=input('Secim yapin: ');
     cikis=0;
     switch secim
         
@@ -38,7 +38,7 @@ while(1==1)
                 ort=mean(nanolmayanlar);
                 yeniveri(sat,sut)=ort;
             end
-            disp('Eksik veriler tamamlandý.');
+            disp('Eksik veriler tamamlandi.');
 
             
         case 2
@@ -54,7 +54,7 @@ while(1==1)
                 toplam= toplam+yeniveri(j,i);
                 end
                 ort=toplam/verisay;
-                fprintf('%d. sütunun ortalamasý: %.2f\n',i,ort);
+                fprintf('%d. sutunun ortalamasi: %.2f\n',i,ort);
                 ort=0;
             end
             
@@ -74,7 +74,7 @@ while(1==1)
                 else
                     medyan=siraliveri(ortancaindex,1);
                 end
-                fprintf('%d. sütunun medyaný= %.2f\n',i,medyan);
+                fprintf('%d. sutunun medyani= %.2f\n',i,medyan);
                 
             end
             
@@ -98,16 +98,16 @@ while(1==1)
                 end
                 maxFrekans=max(tekilveri(:,2));
                 ModIndexler=find(tekilveri(:,2) == maxFrekans);
-                fprintf('%d. sütunun modlarý:\n',i);
+                fprintf('%d. sutunun modlari:\n',i);
                 for j=1:size(ModIndexler,1)
-                    fprintf( '\t%d.Mod: %.2f frekansý: %d\n',j,tekilveri(ModIndexler(j,1),1),maxFrekans);
+                    fprintf( '\t%d.Mod: %.2f frekansi: %d\n',j,tekilveri(ModIndexler(j,1),1),maxFrekans);
                 end
             end
             
             
         case 5
             disp('--Frekans Hesaplama--');
-            sutungir=input('Frekans hesaplatmak istediginiz sütunu giriniz:');
+            sutungir=input('Frekans hesaplatmak istediginiz sutunu giriniz:');
             sutun=sort(yeniveri(:,sutungir));
             tekilveri = unique(sutun);
             tekilveriadet = size(tekilveri,1);
@@ -155,11 +155,11 @@ while(1==1)
                 end
                 IQR= Q3-Q1;
                 fprintf('Q1=%.2f Q3=%.2f ---',Q1,Q3);
-                fprintf('%d. sütunun IQR deðeri= %.2f\n',i,IQR);
+                fprintf('%d. sutunun IQR degeri= %.2f\n',i,IQR);
             end
             
         case 7
-            disp('--Aykýrý Deðerler--');
+            disp('--Aykiri Degerler--');
             [verisay,sutunsay]=size(yeniveri);
             sutun=sutunsay(~isnan(sutunsay));
             satir=verisay(~isnan(verisay));
@@ -193,7 +193,7 @@ while(1==1)
                 IQR= Q3-Q1;
                 ust = Q3+IQR*1.5;
                 alt = Q1-IQR*1.5;
-                fprintf('\n%d sütununun aykýrý deðerleri: \n',i);
+                fprintf('\n%d sutununun aykiri degerleri: \n',i);
                 aykiriveriler=[];
                 for j=1:verisayisi
                     if siraliveri(j,1)<alt || siraliveri(j,1)>ust
@@ -209,7 +209,7 @@ while(1==1)
                           
             end
         case 8
-            disp('--5 Sayý Özeti--');
+            disp('--5 Sayý Ozeti--');
             [verisay,sutunsay]=size(yeniveri);
             sutun=sutunsay(~isnan(sutunsay));
             satir=verisay(~isnan(verisay));
@@ -244,16 +244,16 @@ while(1==1)
                 medyan=median(yeniveri(:,i));
                 maxDeger = max(yeniveri(:,i));
                 minDeger = min(yeniveri(:,i));
-                fprintf('\n%d. sütunun 5 sayý özeti:\n',i);
+                fprintf('\n%d. sutunun 5 sayi ozeti:\n',i);
                 fprintf('\tMinimum deger: %.2f\n',minDeger)
-                fprintf('\tBirinci çeyrek: %.2f\n',Q1)
+                fprintf('\tBirinci ceyrek: %.2f\n',Q1)
                 fprintf('\tMedyan: %.2f\n',medyan)
-                fprintf('\tÜçüncü çeyrek: %.2f\n',Q3)
+                fprintf('\tUcuncu ceyrek: %.2f\n',Q3)
                 fprintf('\tMaksimum deger: %.2f\n',maxDeger)
             end
             
         case 9
-            disp('--Kutu Grafiði--');
+            disp('--Kutu Grafigi--');
             boxplot(yeniveri);
             
         case 10
@@ -271,8 +271,8 @@ while(1==1)
                 varyans=toplam/verisay;
                 standart=sqrt(varyans);
                 std1=std(yeniveri(:,13));
-                fprintf('%d.sütunun:\n',i);
-                fprintf('\tVaryansý= %.2f Standart sapmasý= %.2f\n',varyans,standart);
+                fprintf('%d.sutunun:\n',i);
+                fprintf('\tVaryansi= %.2f Standart sapmasi= %.2f\n',varyans,standart);
                 
             end
             
@@ -281,7 +281,7 @@ while(1==1)
             
         otherwise
             disp('------------');
-            disp('Hatalý giriþ!');
+            disp('Hatali giris!');
 
     end
     if(cikis==1)
