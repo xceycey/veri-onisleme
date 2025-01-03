@@ -7,7 +7,7 @@ yeniveri=veri;
 while(1==1)
     fprintf('\n');
     disp('--------------------------------'); 
-    disp('[1] Ortalama Ýle Eksik Veri Tamamlama');    
+    disp('[1] Ortalama Ile Eksik Veri Tamamlama');    
     disp('[2] Ortalama Hesapla'); 
     disp('[3] Medyan Hesapla'); 
     disp('[4] Mod Hesapla');
@@ -209,7 +209,7 @@ while(1==1)
                           
             end
         case 8
-            disp('--5 Sayý Ozeti--');
+            disp('--5 Sayi Ozeti--');
             [verisay,sutunsay]=size(yeniveri);
             sutun=sutunsay(~isnan(sutunsay));
             satir=verisay(~isnan(verisay));
